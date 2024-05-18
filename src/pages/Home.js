@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { Link, useParams } from "react-router-dom";
 
 function Home() {
   const [contacts, setContacts] = useState([]);
+
+  const { id } = useParams();
 
   useEffect(() => {
     loadContacts();
@@ -11,6 +14,11 @@ function Home() {
   const loadContacts = async () => {
     const result = await axios.get("http://localhost:8080/contacts");
     setContacts(result.data);
+  };
+
+  const deleteContact = async (id) => {
+    await axios.delete(`http://localhost:8080/contact/${id}`);
+    loadContacts();
   };
 
   return (
@@ -35,11 +43,26 @@ function Home() {
                   <td>{c.phone_number}</td>
                   <td>{c.email}</td>
                   <td>
-                    <button className="btn btn-primary me-3">View</button>
-                    <button className="btn btn-outline-primary me-3">
+                    <Link
+                      className="btn btn-primary me-3"
+                      to={`/viewContact/${c.id}`}
+                    >
+                      View
+                    </Link>
+                    <Link
+                      className="btn btn-outline-primary me-3"
+                      to={`/editContact/${c.id}`}
+                    >
                       Edit
+                    </Link>
+                    <button
+                      onClick={() => {
+                        deleteContact(c.id);
+                      }}
+                      className="btn btn-danger me-3"
+                    >
+                      Delete
                     </button>
-                    <button className="btn btn-danger me-3">Delete</button>
                   </td>
                 </tr>
               ))}
