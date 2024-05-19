@@ -96,7 +96,7 @@ function EditContact() {
                   />
                 </div>
                 <button type="submit" className="btn btn-primary">
-                  Add Contact
+                  Edit Contact
                 </button>
                 <Link to="/" className="btn btn-outline-danger mx-3">
                   Cancel

@@ -90,3 +90,9 @@ The backend server should now be running at `http://localhost:8080`.
    ```
 
 The frontend should now be running at `http://localhost:3000`.
+
+## Screenshots
+![](/screenshots/1.png)
+![](/screenshots/2.png)
+![](/screenshots/3.png)
+![](/screenshots/4.png)
